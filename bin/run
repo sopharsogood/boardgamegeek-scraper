@@ -2,7 +2,6 @@
 
 require_relative '../config/environment.rb'
 
-# doc = Scraper.scrape_index("https://boardgamegeek.com/browse/boardgame")
-# Scraper.make_boardgames_from_index(doc)
-
+doc = Scraper.scrape_index("https://boardgamegeek.com/browse/boardgame")
+Scraper.make_boardgames_from_index(doc)
 CLI.get_input_and_respond

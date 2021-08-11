@@ -21,7 +21,6 @@ class Scraper
                     :avg_rating => doc_row.css("td.collection_bggrating + td.collection_bggrating").first.text.strip.to_f, 
                     :url => name_cell.css("a.primary").attribute("href").value
                 }
-                binding.pry
                 Boardgame.new(new_game_hash)
             end
         end
