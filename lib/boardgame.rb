@@ -9,7 +9,7 @@ class Boardgame
         attributes.each {|key, value| self.send(("#{key}="), value)}
         self.simple_rating = (self.avg_rating + self.geek_rating) / 2
         @@all << self
-        binding.pry
+        # binding.pry
     end
 
     def self.all
