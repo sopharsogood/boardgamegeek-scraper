@@ -3,13 +3,14 @@ require_relative '../config/environment.rb'
 class CLI
 
     def self.get_input_and_respond
-        input = "1"
+        input = "-1"
         until input[0].downcase == "e"
             puts " "
             puts "Which of the top 100 board games would you like to see?"
             puts "Enter a range of values, such as 1-100 or 21-30,"
             puts "for a brief description and rating of several games,"
             puts "or enter a single value such as 11 for detailed information about a single game."
+            puts "Or, type 'exit' to quit." if input != "-1"
             input = gets.strip
             puts " "
             split_input = input.split("-")
@@ -23,7 +24,7 @@ class CLI
             elsif first_input > 0
                 self.display_single_game(first_input)
             elsif input[0].downcase == "e"                # more forgiving than checking the entire word exit
-                puts "Thank you and take care!"
+                puts "Thank you and have a nice day!"
                 exit
             else
                 puts "Sorry, I didn't understand that! I am a simple machine and easily confused."
@@ -41,18 +42,27 @@ class CLI
     def self.display_single_game(index)
         game = Boardgame.all[index - 1]
         Scraper.get_single_game_details(game) if game.description == [] # conditional so only scrape once if user re-asks about same game
-        puts "--- #{game.rank}. #{game.name} ---"
+        puts "----- #{game.rank}. #{game.name} -----"
         puts " "
         puts "Released #{game.year}"
         puts "Designed by #{game.designer}      Published by #{game.publisher}"
         if game.min_players == game.max_players
             player_plural = "s"
             player_plural = "" if game.max_players == 1
-            puts "#{game.min_players} player#{game.player_plural}"
+            puts "#{game.min_players} player#{player_plural}"
         else
             puts "#{game.min_players}-#{game.max_players} players"
         end
         puts "Game length: #{game.play_time} minutes"
         puts "Geek Rating: #{game.geek_rating}          Average Rating: #{game.avg_rating}"
+        puts " "
+        puts "--- Full Description ---"
+        puts " "
+        game.description.each do |description|
+            puts description
+        end
+        puts " "
+        puts "------------------------"
+        puts " "
     end
 end
