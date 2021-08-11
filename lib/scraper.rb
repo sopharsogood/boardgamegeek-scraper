@@ -27,9 +27,11 @@ class Scraper
     end
 
     def self.get_single_game_details(game)
-        url = "https://boardgamegeek.com" + game.url
-        uri = URI.open(url)
-        doc_game = Nokogiri::HTML(uri)
+        game_id = game.url.split("/")[2]
+        url = "https://api.geekdo.com/xmlapi2/thing?id=" + game_id
+        uri = URI.parse(url)
+        response = Net::HTTP.get_response(uri)
+        doc = Nokogiri::HTML(response.body)
         binding.pry
     end
 
