@@ -1,3 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment.rb'
+
+doc = Scraper.scrape_index("https://boardgamegeek.com/browse/boardgame")
+Scraper.make_boardgames_from_index(doc)
