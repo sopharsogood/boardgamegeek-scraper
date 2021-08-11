@@ -7,9 +7,8 @@ class CLI
         until input[0].downcase == "e"
             puts " "
             puts "Which of the top 100 board games would you like to see?"
-            puts "Enter a range of values, such as 1-100 or 21-30,"
-            puts "for a brief description and rating of several games,"
-            puts "or enter a single value such as 11 for detailed information about a single game."
+            puts "Enter a range of values, such as 1-100 or 21-30, for a brief description and rating of several games."
+            puts "Or, enter a single value such as 11 for detailed information about a single game."
             puts "Or, type 'exit' to quit." if input != "-1"
             input = gets.strip
             puts " "
