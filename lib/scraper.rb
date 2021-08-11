@@ -10,7 +10,7 @@ class Scraper
 
     def self.make_boardgames_from_index(doc_tr)
         doc_tr.css("tr").each_with_index do |doc_row, index|
-            if index > 0
+            if index > 0                                         # throwing out index 0 because it's the table header, not a row with a game
                 name_cell = doc_row.css("td.collection_objectname")
                 new_game_hash = {
                     :rank => index,

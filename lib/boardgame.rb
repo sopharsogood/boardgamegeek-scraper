@@ -8,8 +8,8 @@ class Boardgame
 
     def initialize(attributes)
         attributes.each {|key, value| self.send(("#{key}="), value)}
-        self.simple_rating = (self.avg_rating + self.geek_rating) / 2
-        self.simple_rating = self.simple_rating.round(3)
+        self.simple_rating = (self.avg_rating + self.geek_rating) / 2 # condense two ratings into a single number
+        self.simple_rating = self.simple_rating.round(3)              # for simplicity of display in large list
         self.description = []
         @@all << self
         # binding.pry

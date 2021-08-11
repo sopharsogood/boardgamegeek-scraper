@@ -4,7 +4,7 @@ class CLI
 
     def self.get_input_and_respond
         input = "1"
-        until input[0] == "e"
+        until input[0].downcase == "e"
             puts " "
             puts "Which of the top 100 board games would you like to see?"
             puts "Enter a range of values, such as 1-100 or 21-30,"
@@ -14,7 +14,7 @@ class CLI
             puts " "
             split_input = input.split("-")
             first_input = split_input[0].to_i
-            second_input = split_input[1].to_i
+            second_input = split_input[1].to_i      # this is 0 if the user entered a single number instead of a range
             first_input = 100 if first_input > 100
             second_input = 100 if second_input > 100
             if first_input > 0 && second_input >= first_input
@@ -22,7 +22,7 @@ class CLI
                 self.display_many_games(range)
             elsif first_input > 0
                 self.display_single_game(first_input)
-            elsif input[0] == "e"
+            elsif input[0].downcase == "e"                # more forgiving than checking the entire word exit
                 puts "Thank you and take care!"
                 exit
             else
