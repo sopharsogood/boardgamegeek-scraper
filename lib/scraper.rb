@@ -11,14 +11,17 @@ class Scraper
     def self.make_boardgames_from_index(doc_tr)
         doc_tr.css("tr").each_with_index do |doc_row, index|
             if index > 0
-                rank = index
                 name_cell = doc_row.css("td.collection_objectname")
-                name = name_cell.css("a.primary").text.strip
-                year = name_cell.css("span.smallerfont").text.strip[1...-1].to_i # remember to remove parens
-                blurb = name_cell.css("p.smallefont").text.strip # smallefont (no R) is sic
-                geek_rating = doc_row.css("td.collection_bggrating").first.text.strip.to_f
-                avg_rating = doc_row.css("td.collection_bggrating + td.collection_bggrating").first.text.strip.to_f
+                new_game_hash = {
+                    :rank => index,
+                    :name => name_cell.css("a.primary").text.strip,
+                    :year => name_cell.css("span.smallerfont").text.strip[1...-1].to_i, # remember to remove parens
+                    :blurb => name_cell.css("p.smallefont").text.strip, # smallefont (no R) is sic
+                    :geek_rating => doc_row.css("td.collection_bggrating").first.text.strip.to_f,
+                    :avg_rating => doc_row.css("td.collection_bggrating + td.collection_bggrating").first.text.strip.to_f,    
+                }
                 binding.pry
+                Boardgame.new(new_game_hash)
             end
         end
     end
