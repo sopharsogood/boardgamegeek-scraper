@@ -26,4 +26,8 @@ class Scraper
         end
     end
 
+    def self.get_single_game_details(game)
+
+    end
+
 end

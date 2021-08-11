@@ -34,8 +34,17 @@ class CLI
     def self.display_many_games(range)
         range.each do |index|
             game = Boardgame.all[index - 1]
-            puts "#{game.rank}. #{game.name}: #{game.blurb} (#{game.simple_rating}/10)"
+            puts "#{game.rank}. #{game.name}: #{game.blurb} (#{game.simple_rating})"
         end
     end
 
+    def self.display_single_game(index)
+        game = Boardgame.all[index - 1]
+        Scraper.get_single_game_details(game) if game.description == [] # conditional so only scrape once if user re-asks about same game
+        puts "--- #{game.rank}. #{game.name} ---"
+        puts " "
+        puts "Released #{game.year}"
+        puts "Designed by #{game.designer};   Published by #{game.publisher}"
+        puts "Geek Rating: #{game.geek_rating};   Average Rating: #{game.avg_rating}"
+    end
 end
