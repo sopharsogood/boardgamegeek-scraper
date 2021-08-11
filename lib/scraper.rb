@@ -32,6 +32,15 @@ class Scraper
         uri = URI.parse(url)
         response = Net::HTTP.get_response(uri)
         doc = Nokogiri::HTML(response.body)
+        expanded_game_hash = {
+            :description => doc.css("description").text.split("&#10;"),
+            :designer => doc.css('link[type="boardgamedesigner"]').first.attribute("value").value.strip,
+            :publisher => doc.css('link[type="boardgamepublisher"]').first.attribute("value").value.strip,
+            :min_players => doc.css("minplayers").first.attribute("value").value.strip,
+            :max_players => doc.css("maxplayers").first.attribute("value").value.strip,
+            :play_time => doc.css("playingtime").first.attribute("value").value.strip
+        }
+        game.enter_new_attributes(expanded_game_hash)
         binding.pry
     end
 
