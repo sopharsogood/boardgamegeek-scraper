@@ -1,7 +1,7 @@
 require_relative '../config/environment.rb'
 
 class Boardgame
-    attr_accessor :rank, :name, :year, :blurb, :geek_rating, :avg_rating, :simple_rating
+    attr_accessor :rank, :name, :year, :blurb, :url, :geek_rating, :avg_rating, :simple_rating
 
     @@all = []
 

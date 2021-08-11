@@ -18,7 +18,8 @@ class Scraper
                     :year => name_cell.css("span.smallerfont").text.strip[1...-1].to_i, # remember to remove parens
                     :blurb => name_cell.css("p.smallefont").text.strip, # smallefont (no R) is sic
                     :geek_rating => doc_row.css("td.collection_bggrating").first.text.strip.to_f,
-                    :avg_rating => doc_row.css("td.collection_bggrating + td.collection_bggrating").first.text.strip.to_f,    
+                    :avg_rating => doc_row.css("td.collection_bggrating + td.collection_bggrating").first.text.strip.to_f, 
+                    :url => name_cell.css("a.primary").attribute("href").value
                 }
                 binding.pry
                 Boardgame.new(new_game_hash)
