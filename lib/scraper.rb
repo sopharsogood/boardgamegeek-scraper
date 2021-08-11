@@ -34,14 +34,13 @@ class Scraper
         doc = Nokogiri::HTML(response.body)
         expanded_game_hash = {
             :description => doc.css("description").text.split("&#10;"),
-            :designer => doc.css('link[type="boardgamedesigner"]').first.attribute("value").value.strip,
-            :publisher => doc.css('link[type="boardgamepublisher"]').first.attribute("value").value.strip,
+            :designer => doc.css('link[type="boardgamedesigner"]').first.attribute("value").value.strip, # only gets one designer even for games with 2-3 designers; worth expanding to get all?
+            :publisher => doc.css('link[type="boardgamepublisher"]').first.attribute("value").value.strip, # primary publisher seems to be the one listed first, the rest are alphabetical
             :min_players => doc.css("minplayers").first.attribute("value").value.strip,
             :max_players => doc.css("maxplayers").first.attribute("value").value.strip,
             :play_time => doc.css("playingtime").first.attribute("value").value.strip
         }
         game.enter_new_attributes(expanded_game_hash)
-        binding.pry
     end
 
 end

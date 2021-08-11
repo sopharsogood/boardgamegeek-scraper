@@ -44,7 +44,15 @@ class CLI
         puts "--- #{game.rank}. #{game.name} ---"
         puts " "
         puts "Released #{game.year}"
-        puts "Designed by #{game.designer};   Published by #{game.publisher}"
-        puts "Geek Rating: #{game.geek_rating};   Average Rating: #{game.avg_rating}"
+        puts "Designed by #{game.designer}      Published by #{game.publisher}"
+        if game.min_players == game.max_players
+            player_plural = "s"
+            player_plural = "" if game.max_players == 1
+            puts "#{game.min_players} player#{game.player_plural}"
+        else
+            puts "#{game.min_players}-#{game.max_players} players"
+        end
+        puts "Game length: #{game.play_time} minutes"
+        puts "Geek Rating: #{game.geek_rating}          Average Rating: #{game.avg_rating}"
     end
 end
