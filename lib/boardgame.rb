@@ -2,7 +2,7 @@ require_relative '../config/environment.rb'
 
 class Boardgame
     attr_accessor :rank, :name, :year, :blurb, :url, :geek_rating, :avg_rating, :simple_rating
-    attr_accessor :description, :designer, :publisher, :play_time, :min_players, :max_players
+    attr_accessor :description, :designer, :publisher, :play_time, :min_players, :max_players, :mechanics, :genres
 
     CHARACTER_REPLACEMENTS = {
         "&quot;" => "\"",

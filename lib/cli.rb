@@ -55,6 +55,14 @@ class CLI
         puts "Game length: #{game.play_time} minutes"
         puts "Geek Rating: #{game.geek_rating}          Average Rating: #{game.avg_rating}"
         puts " "
+        puts " "
+        puts "--- Game Categories ---"
+        puts " "
+        puts "Genres: #{game.genres}"
+        puts " "
+        puts "Mechanics: #{game.mechanics}"
+        puts " "
+        puts " "
         puts "--- Full Description ---"
         puts " "
         game.description.each do |description|
@@ -62,6 +70,7 @@ class CLI
         end
         puts " "
         puts "------------------------"
+        puts " "
         puts " "
     end
 end
