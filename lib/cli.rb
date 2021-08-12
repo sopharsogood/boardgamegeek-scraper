@@ -13,6 +13,7 @@ class CLI
             input = gets.strip
             puts " "
             split_input = input.split("-")
+            input = "blank" if input == "" # prevents type error from downcasing nil later
             first_input = split_input[0].to_i
             second_input = split_input[1].to_i      # this is 0 if the user entered a single number instead of a range
             first_input = 100 if first_input > 100
@@ -41,10 +42,11 @@ class CLI
     def self.display_single_game(index)
         game = Boardgame.all[index - 1]
         Scraper.get_single_game_details(game) if game.description == [] # conditional so only scrape once if user re-asks about same game
+
         puts "----- #{game.rank}. #{game.name} -----"
         puts " "
         puts "Released #{game.year}"
-        puts "Designed by #{game.designer}      Published by #{game.publisher}"
+        puts "Designed by #{game.designer}        Published by #{game.publisher}"
         if game.min_players == game.max_players
             player_plural = "s"
             player_plural = "" if game.max_players == 1
@@ -53,7 +55,9 @@ class CLI
             puts "#{game.min_players}-#{game.max_players} players"
         end
         puts "Game length: #{game.play_time} minutes"
-        puts "Geek Rating: #{game.geek_rating}          Average Rating: #{game.avg_rating}"
+        spaces_needed = game.designer.length - game.geek_rating.to_s.length + 7
+        string_of_spaces = " ".*(spaces_needed)
+        puts "Geek Rating: #{game.geek_rating}" + string_of_spaces + "Average Rating: #{game.avg_rating}"
         puts " "
         puts " "
         puts "--- Game Categories ---"
