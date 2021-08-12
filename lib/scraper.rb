@@ -33,9 +33,9 @@ class Scraper
         response = Net::HTTP.get_response(uri)
         doc = Nokogiri::HTML(response.body)
         genre_array = self.collect_values_of_type(doc, "boardgamecategory")
-        genre_string = genre_array.join(", ")
+        genre_string = genre_array.join("; ")
         mechanic_array = self.collect_values_of_type(doc, "boardgamemechanic")
-        mechanic_string = mechanic_array.join(", ")
+        mechanic_string = mechanic_array.join("; ")
         expanded_game_hash = {
             :description => doc.css("description").text.split("&#10;"),
             :designer => doc.css('link[type="boardgamedesigner"]').first.attribute("value").value.strip, # only gets one designer even for games with 2-3 designers; worth expanding to get all?
