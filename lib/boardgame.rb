@@ -48,8 +48,12 @@ class Boardgame
 
     def fix_HTML_description_characters
         self.description.collect do |description_text|
-            @@coder.decode(description_text)
+            self.class.coder.decode(description_text)
         end
+    end
+
+    def self.coder
+        @@coder
     end
 
     def self.all
