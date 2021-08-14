@@ -28,7 +28,6 @@ class Boardgame
         self.simple_rating = self.simple_rating.round(3)              # for simplicity of display in large list
         self.description = []
         @@all << self
-        @@coder = HTMLEntities.new
         # binding.pry
     end
 
@@ -54,6 +53,10 @@ class Boardgame
 
     def self.coder
         @@coder
+    end
+
+    def self.prepare_coder
+        @@coder = HTMLEntities.new
     end
 
     def self.all

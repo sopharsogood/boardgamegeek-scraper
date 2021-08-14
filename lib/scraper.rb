@@ -24,6 +24,7 @@ class Scraper
                 Boardgame.new(new_game_hash)
             end
         end
+        Boardgame.prepare_coder
     end
 
     def self.get_single_game_details(game)
