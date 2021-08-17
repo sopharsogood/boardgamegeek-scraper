@@ -33,10 +33,16 @@ class CLI
     end
 
     def self.display_many_games(range)
+        puts "----- Best Games ##{range.first}-#{range.last} -----"
+        puts " "
         range.each do |index|
             game = Boardgame.all[index - 1]
             puts "#{game.rank}. #{game.name}: #{game.blurb} (#{game.simple_rating})"
         end
+        puts " "
+        dashes_needed = range.first.to_s.length + range.last.to_s.length + 25
+        puts "-".*(dashes_needed)
+        puts " "
     end
 
     def self.display_single_game(index)
