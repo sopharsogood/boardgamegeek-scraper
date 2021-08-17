@@ -4,7 +4,7 @@ class CLI
 
     def self.get_input_and_respond
         input = "-1"
-        until input[0].downcase == "e"
+        loop do
             puts " "
             puts "Which of the top 100 board games would you like to see?"
             puts "Enter a range of values, such as 1-100 or 21-30, for a brief description and rating of several games."
@@ -25,7 +25,7 @@ class CLI
                 self.display_single_game(first_input)
             elsif input[0].downcase == "e"                # more forgiving than checking the entire word exit
                 puts "Thank you and have a nice day!"
-                exit
+                break
             else
                 puts "Sorry, I didn't understand that! I am a simple machine and easily confused."
             end
